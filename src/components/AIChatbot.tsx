@@ -1,10 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { MessageSquare, X, Send, Bot, User } from "lucide-react";
-import { GoogleGenAI } from "@google/genai";
+import { MessageSquare, X, Send, Bot } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
 
 export const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,20 +27,18 @@ export const AIChatbot = () => {
     setIsLoading(true);
 
     try {
-      const prompt = `
-        You are the AI Assistant for "SNGO Creations", a high-end VFX, Motion Design, and AI studio.
-        Your tone is premium, professional, and creative.
-        Studio Services: VFX, Motion Graphics, AI Visuals, Commercials, Color Grading.
-        The user asked: ${userMessage}
-        Please provide a concise, helpful response. If they want to start a project, tell them to fill out the contact form below or visit the Contact section.
-      `;
-      
-      const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: prompt,
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage }),
       });
-      
-      const text = response.text || "I'm sorry, I couldn't process that.";
+
+      if (!response.ok) {
+        throw new Error("Failed to get AI response");
+      }
+
+      const data = await response.json();
+      const text = data.text || "I'm sorry, I couldn't process that.";
       setMessages((prev) => [...prev, { role: "bot", text }]);
     } catch (error) {
       console.error("AI Error:", error);
