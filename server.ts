@@ -12,6 +12,11 @@ async function startServer() {
 
   app.use(express.json());
 
+  // Health check
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok" });
+  });
+
   // Gemini API Proxy Route
   app.post("/api/chat", async (req, res) => {
     try {
@@ -47,9 +52,9 @@ async function startServer() {
       });
 
       res.json({ text: response.text });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Gemini API Error:", error);
-      res.status(500).json({ error: "Failed to generate content" });
+      res.status(error?.status || 500).json({ error: error?.message || "Failed to generate content" });
     }
   });
 
