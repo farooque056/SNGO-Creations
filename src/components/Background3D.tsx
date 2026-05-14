@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
@@ -6,16 +6,19 @@ import * as THREE from "three";
 function ParticleField() {
   const ref = useRef<THREE.Points>(null!);
   
-  // Create a sphere of random points
-  const sphere = new Float32Array(3000 * 3);
-  for (let i = 0; i < 3000; i++) {
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.acos(Math.random() * 2 - 1);
-    const r = 5 * Math.pow(Math.random(), 0.5);
-    sphere[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-    sphere[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-    sphere[i * 3 + 2] = r * Math.cos(phi);
-  }
+  // Memoize the sphere of random points
+  const sphere = useMemo(() => {
+    const p = new Float32Array(3000 * 3);
+    for (let i = 0; i < 3000; i++) {
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(Math.random() * 2 - 1);
+      const r = 5 * Math.pow(Math.random(), 0.5);
+      p[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      p[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      p[i * 3 + 2] = r * Math.cos(phi);
+    }
+    return p;
+  }, []);
 
   useFrame((state, delta) => {
     ref.current.rotation.x -= delta / 10;
