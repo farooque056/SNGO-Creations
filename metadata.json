@@ -1,5 +1,5 @@
 {
-  "name": "SNGO Creations",
+  "name": "sngostudio",
   "description": "Motion Design, VFX, and AI-powered Creative Studio specializing in cinematic visual storytelling.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
