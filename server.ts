@@ -24,9 +24,11 @@ async function startServer() {
       const apiKey = process.env.GEMINI_API_KEY;
 
       if (!apiKey) {
+        console.error("Chat Error: GEMINI_API_KEY is missing");
         return res.status(500).json({ error: "GEMINI_API_KEY is not configured on the server." });
       }
 
+      console.log("Sending prompt to Gemini...");
       const ai = new GoogleGenAI({
         apiKey: apiKey,
         httpOptions: {
@@ -37,7 +39,7 @@ async function startServer() {
       });
 
       const prompt = `
-        You are the AI Assistant for "SNGO Creations", a high-end VFX, Motion Design, and AI studio.
+        You are Tania, the AI Assistant for "SNGO Creations", a high-end VFX, Motion Design, and AI studio.
         Your tone is premium, professional, and creative.
         Studio Services: VFX, Motion Graphics, AI Visuals, Commercials, Color Grading.
         
@@ -46,15 +48,20 @@ async function startServer() {
         Please provide a concise, helpful response. If they want to start a project, tell them to fill out the contact form below or visit the Contact section.
       `;
 
+      // Using gemini-flash-latest which is often more stable in these environments
       const response = await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
+        model: "gemini-flash-latest",
         contents: prompt,
       });
 
+      console.log("Gemini response received successfully");
       res.json({ text: response.text });
     } catch (error: any) {
-      console.error("Gemini API Error:", error);
-      res.status(error?.status || 500).json({ error: error?.message || "Failed to generate content" });
+      console.error("Gemini API Error Detail:", error);
+      res.status(error?.status || 500).json({ 
+        error: error?.message || "Failed to generate content",
+        details: error?.statusText || undefined
+      });
     }
   });
 

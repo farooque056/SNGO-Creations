@@ -79,10 +79,10 @@ export const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-8xl md:text-[14vw] font-display font-black tracking-tightest leading-[0.7] uppercase transition-all"
+              className="text-6xl sm:text-8xl md:text-[14vw] font-display font-black tracking-tightest leading-[0.7] uppercase transition-all"
             >
               Visual <br /> 
-              <span className="font-serif italic font-light text-white/20 lowercase -ml-[0.05em] block mt-4">Intelligence.</span>
+              <span className="font-serif italic font-light text-white/20 lowercase -ml-[0.05em] block mt-4 md:mt-8">Intelligence.</span>
             </motion.h2>
           </div>
           
@@ -91,14 +91,14 @@ export const Portfolio = () => {
                initial={{ opacity: 0 }}
                whileInView={{ opacity: 1 }}
                viewport={{ once: true }}
-               className="space-y-8"
+               className="space-y-6 md:space-y-8"
              >
                 <div className="flex gap-2">
                    {[...Array(4)].map((_, i) => (
-                     <div key={i} className={`w-8 h-[1px] ${i === 0 ? 'bg-white' : 'bg-white/10'}`} />
+                     <div key={i} className={`w-6 md:w-8 h-[1px] ${i === 0 ? 'bg-white' : 'bg-white/10'}`} />
                    ))}
                 </div>
-                <p className="text-[11px] uppercase font-bold tracking-[0.3em] text-white/30 leading-relaxed max-w-[200px]">
+                <p className="text-[10px] md:text-[11px] uppercase font-bold tracking-[0.3em] text-white/30 leading-relaxed max-w-[200px]">
                   A rigorous selection of commercial artifacts and technical experiments designed to challenge sensory perception.
                 </p>
                 <div className="pt-8 flex items-center gap-6">
@@ -118,7 +118,7 @@ export const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              className={`group relative overflow-hidden rounded-[80px] md:rounded-[120px] bg-[#0a0a0a] border border-white/5 transition-all duration-1000 ${
+              className={`group relative overflow-hidden rounded-[60px] md:rounded-[120px] bg-[#0a0a0a] border border-white/5 transition-all duration-1000 min-h-[500px] ${
                 i === 0 ? "md:col-span-8 md:h-[850px]" : 
                 i === 1 ? "md:col-span-4 md:h-[850px]" :
                 i === 2 ? "md:col-span-5 md:h-[650px]" :
@@ -156,38 +156,38 @@ export const Portfolio = () => {
               {/* Cinematic Gradient Fade */}
               <div className="absolute inset-x-0 bottom-0 top-[40%] bg-linear-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent opacity-90 transition-opacity duration-1000" />
 
-              <div className="absolute inset-0 p-16 md:p-24 flex flex-col justify-between z-10">
+              <div className="absolute inset-0 p-8 sm:p-16 md:p-24 flex flex-col justify-between z-10">
                  {/* Top Controls: Meta Data */}
                  <div className="flex justify-between items-start pointer-events-none">
-                    <div className="space-y-6">
-                       <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-xl group-hover:bg-white transition-all duration-700">
-                             <Maximize2 size={16} className="text-white/40 group-hover:text-black transition-colors" />
+                    <div className="space-y-4 md:space-y-6">
+                       <div className="flex items-center gap-3 md:gap-4">
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-xl group-hover:bg-white transition-all duration-700">
+                             <Maximize2 size={14} className="text-white/40 group-hover:text-black transition-colors" />
                           </div>
-                          <span className="text-[10px] font-mono font-black text-white/40 uppercase tracking-[0.5em] group-hover:text-white transition-colors">
+                          <span className="text-[9px] md:text-[10px] font-mono font-black text-white/40 uppercase tracking-[0.5em] group-hover:text-white transition-colors">
                              ID_{work.id}
                           </span>
                        </div>
-                       <div className="text-[9px] font-mono text-white/10 uppercase tracking-widest hidden md:block">COORD_LOC: {work.meta}</div>
+                       <div className="text-[8px] md:text-[9px] font-mono text-white/10 uppercase tracking-widest hidden sm:block">COORD_LOC: {work.meta}</div>
                     </div>
                     
                     <div className="flex flex-col items-end gap-3">
-                       <div className="px-4 py-1.5 rounded-full border border-white/10 bg-black/20 backdrop-blur-md flex items-center gap-3">
-                          <Activity size={10} className="text-[#00ffc3] animate-pulse" />
-                          <span className="text-[8px] font-mono font-black text-[#00ffc3] uppercase tracking-widest">{work.status}</span>
+                       <div className="px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-white/10 bg-black/20 backdrop-blur-md flex items-center gap-2 md:gap-3">
+                          <Activity size={8} className="text-[#00ffc3] animate-pulse" />
+                          <span className="text-[7px] md:text-[8px] font-mono font-black text-[#00ffc3] uppercase tracking-widest">{work.status}</span>
                        </div>
                     </div>
                  </div>
                  
                  {/* Bottom Typography: Title & Action */}
-                 <div className="max-w-4xl space-y-12 translate-y-10 group-hover:translate-y-0 transition-transform duration-1000">
-                    <div className="flex items-center gap-6">
-                       <div className="h-[1px] w-20 bg-white/20 group-hover:w-32 transition-all duration-700" />
-                       <span className="text-[11px] font-mono uppercase font-black tracking-[0.4em] text-white/60">{work.category}</span>
+                 <div className="max-w-4xl space-y-8 md:space-y-12 translate-y-6 md:translate-y-10 group-hover:translate-y-0 transition-transform duration-1000">
+                    <div className="flex items-center gap-4 md:gap-6">
+                       <div className="h-[1px] w-12 md:w-20 bg-white/20 group-hover:w-32 transition-all duration-700" />
+                       <span className="text-[10px] md:text-[11px] font-mono uppercase font-black tracking-[0.4em] text-white/60">{work.category}</span>
                     </div>
 
-                    <div className={`flex flex-col ${i === 0 || i === 2 || i === 3 ? "lg:flex-row lg:items-end" : ""} justify-between gap-12`}>
-                       <h3 className={`${i === 1 || i === 2 || i === 3 ? "text-4xl md:text-6xl" : "text-6xl md:text-8xl"} font-display font-black tracking-tightest uppercase leading-[0.8] group-hover:italic transition-all duration-1000 group-hover:tracking-tighter`}>
+                    <div className={`flex flex-col ${i === 0 || i === 2 || i === 3 ? "lg:flex-row lg:items-end" : ""} justify-between gap-8 md:gap-12`}>
+                       <h3 className={`${i === 1 || i === 2 || i === 3 ? "text-3xl sm:text-4xl md:text-6xl" : "text-4xl sm:text-6xl md:text-8xl"} font-display font-black tracking-tightest uppercase leading-[0.8] group-hover:italic transition-all duration-1000 group-hover:tracking-tighter`}>
                           {work.title}
                        </h3>
                        
@@ -196,9 +196,9 @@ export const Portfolio = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.05 }}
-                          className="w-24 h-24 md:w-32 md:h-32 rounded-full border border-white/10 flex items-center justify-center hover:bg-white group/btn transition-all duration-700 pointer-events-auto cursor-pointer shrink-0"
+                          className="w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full border border-white/10 flex items-center justify-center hover:bg-white group/btn transition-all duration-700 pointer-events-auto cursor-pointer shrink-0"
                        >
-                          <ArrowUpRight size={32} className="text-white/40 group-hover/btn:text-black group-hover:scale-125 transition-all duration-700" />
+                          <ArrowUpRight size={24} className="text-white/40 group-hover/btn:text-black group-hover:scale-125 transition-all duration-700" />
                        </motion.a>
                     </div>
                  </div>
@@ -211,53 +211,53 @@ export const Portfolio = () => {
         </div>
 
         {/* The New "Alchemical" Split View Case Study */}
-        <div className="mt-60 grid grid-cols-1 xl:grid-cols-12 gap-20 items-center">
+        <div className="mt-40 md:mt-60 grid grid-cols-1 xl:grid-cols-12 gap-12 md:gap-20 items-center">
            <div className="xl:col-span-8 relative group">
-             <div className="absolute -top-10 left-10 flex gap-4 text-[10px] font-mono text-white/20 uppercase tracking-widest z-10">
+             <div className="absolute -top-10 left-6 md:left-10 flex gap-4 text-[10px] font-mono text-white/20 uppercase tracking-widest z-10">
                 <span className="group-hover:text-white transition-colors duration-500">RAW_CAPTURE_V1</span>
                 <span>/</span>
                 <span className="text-white/40">FINAL_SYNTH_V9</span>
              </div>
              
-             <div className="relative rounded-[120px] overflow-hidden border border-white/5 shadow-[0_0_100px_rgba(0,0,0,0.5)]">
+             <div className="relative rounded-[60px] md:rounded-[120px] overflow-hidden border border-white/5 shadow-[0_0_100px_rgba(0,0,0,0.5)]">
                <BeforeAfterSlider 
                  before="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=1600"
                  after="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1600"
-                 className="h-[60vh] lg:h-[85vh] scale-[1.01]"
+                 className="h-[40vh] sm:h-[60vh] lg:h-[85vh] scale-[1.01]"
                />
                
                {/* UI Corners */}
-               <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-white/20 p-4">
-                  <div className="w-2 h-2 bg-white rounded-full animate-ping" />
+               <div className="absolute top-0 left-0 w-12 h-12 md:w-20 md:h-20 border-t-2 border-l-2 border-white/20 p-3 md:p-4">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full animate-ping" />
                </div>
-               <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-white/20" />
+               <div className="absolute bottom-0 right-0 w-12 h-12 md:w-20 md:h-20 border-b-2 border-r-2 border-white/20" />
              </div>
            </div>
 
-           <div className="xl:col-span-4 space-y-16 lg:px-12">
+           <div className="xl:col-span-4 space-y-10 md:space-y-16 lg:px-12">
               <div className="space-y-4">
                  <div className="flex items-center gap-4">
                     <ShieldCheck size={16} className="text-white/20" />
-                    <span className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/20">Case_Study_Ref_032</span>
+                    <span className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.5em] text-white/20">Case_Study_Ref_032</span>
                  </div>
-                 <h4 className="text-5xl font-display font-black uppercase tracking-tightest leading-[0.9]">
+                 <h4 className="text-4xl md:text-5xl font-display font-black uppercase tracking-tightest leading-[0.9]">
                    The Alchemical <br /> Process.
                  </h4>
               </div>
               
-              <div className="space-y-10">
-                 <p className="text-[11px] uppercase font-bold tracking-[0.2em] text-white/30 leading-relaxed">
+              <div className="space-y-8 md:space-y-10">
+                 <p className="text-[10px] md:text-[11px] uppercase font-bold tracking-[0.2em] text-white/30 leading-relaxed max-w-sm">
                    Deconstructing traditional lighting physics to rebuild them within a synthetic environment. Achieving hyper-organic realism through iterative procedural chaos.
                  </p>
                  
-                 <div className="grid grid-cols-2 gap-8 border-t border-white/5 pt-10">
+                 <div className="grid grid-cols-2 gap-6 md:gap-8 border-t border-white/5 pt-10">
                     <div className="space-y-2">
-                       <div className="text-[9px] font-mono text-white/20 uppercase tracking-widest">Render_Time</div>
-                       <div className="text-xl font-display font-black">1.2ms / px</div>
+                       <div className="text-[8px] md:text-[9px] font-mono text-white/20 uppercase tracking-widest">Render_Time</div>
+                       <div className="text-lg md:text-xl font-display font-black">1.2ms / px</div>
                     </div>
                     <div className="space-y-2">
-                       <div className="text-[9px] font-mono text-white/20 uppercase tracking-widest">Complexity</div>
-                       <div className="text-xl font-display font-black">94.2% ARCH</div>
+                       <div className="text-[8px] md:text-[9px] font-mono text-white/20 uppercase tracking-widest">Complexity</div>
+                       <div className="text-lg md:text-xl font-display font-black">94.2% ARCH</div>
                     </div>
                  </div>
 

@@ -23,18 +23,18 @@ export const Studio = () => {
       <div className="container mx-auto px-6 max-w-4xl">
         
         {/* Section 01: About */}
-        <div className="relative mb-32 flex flex-col items-center text-center">
-          <div className="max-w-3xl space-y-12">
+        <div className="relative mb-24 md:mb-32 flex flex-col items-center text-center">
+          <div className="max-w-3xl space-y-8 md:space-y-12">
             <div className="space-y-4">
               <span className="text-[10px] font-mono uppercase font-black tracking-[0.5em] text-white/40 block">About US</span>
-              <h2 className="text-6xl md:text-8xl font-display font-black tracking-tightest uppercase leading-[0.8]">
+              <h2 className="text-5xl sm:text-6xl md:text-8xl font-display font-black tracking-tightest uppercase leading-[0.8]">
                 Visual <br />
                 <span className="text-white/20">Storytellers</span>
               </h2>
             </div>
             
-            <div className="max-w-xl mx-auto">
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light tracking-tight">
+            <div className="max-w-xl mx-auto px-4 md:px-0">
+              <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed font-light tracking-tight">
                 SNGO Creations is a creative agency and visual effects studio crafting compelling visuals for motion pictures, branded content, advertising, and immersive storytelling. Rooted in a legacy of precision and artistry, and powered by AI innovation, we deliver world-class visual effects from concept to post—elevating narratives and captivating audiences.
               </p>
             </div>
@@ -43,10 +43,10 @@ export const Studio = () => {
 
         {/* Section 02: Team */}
         <div className="relative max-w-3xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-20">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-12 md:mb-20">
              <div className="space-y-4">
               <span className="text-[10px] font-mono uppercase font-black tracking-[0.5em] text-white/40 block">The team</span>
-              <h2 className="text-4xl md:text-5xl font-display font-black tracking-tightest uppercase leading-[0.85]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black tracking-tightest uppercase leading-[0.85]">
                 The People <br />
                 <span className="text-white/20">Of SNGO</span>
               </h2>
@@ -82,7 +82,6 @@ export const Studio = () => {
                         {member.role}
                       </p>
                     </div>
-                    
                     <p className="text-xs md:text-sm text-white/80 leading-relaxed max-w-[280px] mx-auto md:mx-0 font-light">
                       {member.description}
                     </p>

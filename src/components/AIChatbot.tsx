@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 export const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ role: "user" | "bot"; text: string }[]>([
-    { role: "bot", text: "Welcome to SNGO Creations. I’m your AI assistant. How can I help you visualize your next project?" },
+    { role: "bot", text: "Welcome to SNGO Creations. I’m Tania, your AI assistant. How can I help you visualize your next project?" },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -18,11 +18,12 @@ export const AIChatbot = () => {
     }
   }, [messages]);
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+  const handleSend = async (messageOverride?: string) => {
+    const messageToSend = messageOverride || input;
+    if (!messageToSend.trim() || isLoading) return;
 
-    const userMessage = input.trim();
-    setInput("");
+    const userMessage = messageToSend.trim();
+    if (!messageOverride) setInput("");
     setMessages((prev) => [...prev, { role: "user", text: userMessage }]);
     setIsLoading(true);
 
@@ -33,11 +34,11 @@ export const AIChatbot = () => {
         body: JSON.stringify({ message: userMessage }),
       });
 
+      const data = await response.json();
       if (!response.ok) {
-        throw new Error("Failed to get AI response");
+        throw new Error(data.error || "Failed to get AI response");
       }
 
-      const data = await response.json();
       const text = data.text || "I'm sorry, I couldn't process that.";
       setMessages((prev) => [...prev, { role: "bot", text }]);
     } catch (error) {
@@ -54,9 +55,9 @@ export const AIChatbot = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-8 right-8 w-16 h-16 bg-white text-black rounded-full shadow-2xl flex items-center justify-center z-[5000]"
+        className="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-14 h-14 md:w-16 md:h-16 bg-white text-black rounded-full shadow-2xl flex items-center justify-center z-[5000]"
       >
-        <MessageSquare size={24} />
+        <MessageSquare size={20} className="md:w-6 md:h-6" />
       </motion.button>
 
       <AnimatePresence>
@@ -65,7 +66,7 @@ export const AIChatbot = () => {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-28 right-8 w-96 max-w-[calc(100vw-4rem)] h-[500px] glass rounded-3xl z-[5000] overflow-hidden flex flex-col shadow-2xl shadow-black"
+            className="fixed bottom-24 right-4 left-4 md:left-auto md:right-8 md:w-96 h-[500px] max-h-[70vh] glass rounded-3xl z-[5000] overflow-hidden flex flex-col shadow-2xl shadow-black"
           >
             <div className="p-6 border-b border-white/10 flex items-center justify-between bg-white/[0.05]">
               <div className="flex items-center gap-3">
@@ -73,7 +74,7 @@ export const AIChatbot = () => {
                    <Bot size={20} />
                 </div>
                 <div>
-                   <div className="text-sm font-bold tracking-tight">SNGO AI Assistant</div>
+                   <div className="text-sm font-bold tracking-tight">Tania</div>
                    <div className="text-[10px] uppercase tracking-widest text-[#25D366]">Online</div>
                 </div>
               </div>
@@ -109,6 +110,19 @@ export const AIChatbot = () => {
               )}
             </div>
 
+            <div className="px-4 pb-2 flex gap-2 overflow-x-auto no-scrollbar mask-fade-right">
+              {["What services do you provide?", "How can I start a project?", "Tell me about your AI capabilities", "Where are you located?"].map((q) => (
+                <button
+                  key={q}
+                  onClick={() => handleSend(q)}
+                  disabled={isLoading}
+                  className="whitespace-nowrap px-4 py-1.5 rounded-full glass border border-white/10 text-[10px] font-mono uppercase tracking-wider text-white/40 hover:text-white hover:border-white/30 transition-all disabled:opacity-50"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+
             <div className="p-4 bg-white/[0.02] border-t border-white/10 flex gap-3">
               <input
                 value={input}
@@ -118,7 +132,7 @@ export const AIChatbot = () => {
                 className="flex-1 bg-transparent border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-white/40 transition-colors"
               />
               <button 
-                onClick={handleSend}
+                onClick={() => handleSend()}
                 disabled={isLoading}
                 className="w-10 h-10 bg-white text-black rounded-xl flex items-center justify-center hover:bg-white/80 transition-colors disabled:opacity-50"
               >

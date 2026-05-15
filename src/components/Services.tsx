@@ -30,33 +30,33 @@ const services = [
 
 export const Services = () => {
   return (
-    <section id="services" className="py-60 bg-[#0a0a0a] relative overflow-hidden">
+    <section id="services" className="py-32 md:py-60 bg-[#0a0a0a] relative overflow-hidden">
       {/* Background Tech Grid */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
         <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 mb-40">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-20 mb-24 md:mb-40">
           <div className="lg:col-span-12">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-[10px] uppercase font-black tracking-[0.6em] text-white/30 mb-12 flex items-center gap-6"
+              className="text-[10px] uppercase font-black tracking-[0.6em] text-white/30 mb-8 md:mb-12 flex items-center gap-4 md:gap-6"
             >
               <div className="w-12 h-[1px] bg-white/20" />
               Technical Directorship / Capabilities
             </motion.div>
             
-            <div className="flex flex-col lg:flex-row items-end justify-between gap-12">
+            <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-12">
               <motion.h2
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-8xl md:text-[12vw] font-display font-black tracking-tightest leading-[0.75] uppercase"
+                className="text-6xl sm:text-8xl md:text-[12vw] font-display font-black tracking-tightest leading-[0.75] uppercase"
               >
-                The <span className="font-serif italic font-light text-white/40 lowercase -ml-[0.1em]">Engine</span> <br />
+                The <span className="font-serif italic font-light text-white/40 lowercase -ml-[0.05em] md:-ml-[0.1em]">Engine</span> <br />
                 Of Sight.
               </motion.h2>
               
@@ -64,7 +64,7 @@ export const Services = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="max-w-xs space-y-8"
+                className="max-w-xs space-y-6 md:space-y-8"
               >
                 <div className="h-[1px] w-full bg-gradient-to-r from-white/40 to-transparent" />
                 <p className="text-[10px] uppercase font-bold tracking-widest text-white/40 leading-relaxed">
@@ -85,7 +85,7 @@ export const Services = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-24">
           {services.map((service, i) => (
             <motion.div
               key={service.id}
@@ -93,7 +93,7 @@ export const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className={`group relative aspect-[4/5] md:aspect-square lg:aspect-[4/3] glass bg-white/[0.005] border-white/5 rounded-[80px] p-12 md:p-20 flex flex-col justify-between cursor-pointer overflow-hidden transition-all duration-1000 ${
+              className={`group relative aspect-[4/5] sm:aspect-square lg:aspect-[4/3] glass bg-white/[0.005] border-white/5 rounded-[60px] md:rounded-[80px] p-10 md:p-20 flex flex-col justify-between cursor-pointer overflow-hidden transition-all duration-1000 ${
                 i % 2 !== 0 ? "md:translate-y-32" : ""
               }`}
             >
@@ -102,23 +102,23 @@ export const Services = () => {
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white/2 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-white/2 to-transparent" />
               </div>
-
+ 
               {/* Technical readout corner - Faded */}
-              <div className="absolute top-12 right-12 flex flex-col items-end gap-1 font-mono text-[8px] text-white/5 uppercase tracking-widest group-hover:text-white/20 transition-colors">
+              <div className="absolute top-10 right-10 md:top-12 md:right-12 flex flex-col items-end gap-1 font-mono text-[8px] text-white/5 uppercase tracking-widest group-hover:text-white/20 transition-colors">
                 <div className="flex items-center gap-2">
                   <span className="w-1 h-1 rounded-full bg-[#25D366] opacity-20 animate-pulse" />
                   ID_{service.id}_SYS
                 </div>
               </div>
-
+ 
               <div className="relative z-10">
-                <div className="w-20 h-20 rounded-full border border-white/5 flex items-center justify-center mb-12 group-hover:bg-white group-hover:text-black transition-all duration-700">
-                  <service.icon size={28} className="opacity-20 group-hover:opacity-100" />
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/5 flex items-center justify-center mb-8 md:mb-12 group-hover:bg-white group-hover:text-black transition-all duration-700">
+                  <service.icon size={24} className="opacity-20 group-hover:opacity-100 md:w-[28px] md:h-[28px]" />
                 </div>
                 
                 <div className="space-y-4">
-                  <span className="text-[10px] uppercase font-black tracking-[0.5em] text-white/10 group-hover:text-white/30 transition-colors">Module // 0{i + 1}</span>
-                  <h3 className="text-5xl md:text-7xl font-display font-black tracking-tightest uppercase leading-[0.85] opacity-80 group-hover:opacity-100 transition-opacity">
+                  <span className="text-[9px] md:text-[10px] uppercase font-black tracking-[0.5em] text-white/10 group-hover:text-white/30 transition-colors">Module // 0{i + 1}</span>
+                  <h3 className="text-4xl sm:text-5xl md:text-7xl font-display font-black tracking-tightest uppercase leading-[0.85] opacity-80 group-hover:opacity-100 transition-opacity">
                     {service.title.split(' ')[0]} <br />
                     <span className="font-serif italic font-light text-white/20 lowercase group-hover:text-white/60 transition-colors">
                       {service.title.split(' ').slice(1).join(' ')}
@@ -151,7 +151,7 @@ export const Services = () => {
          <motion.div 
            animate={{ x: [0, -2000] }}
            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-           className="flex gap-20 text-[1.5vw] font-display font-black tracking-tightest uppercase whitespace-nowrap"
+           className="flex gap-20 text-[1.2vw] font-mono font-bold tracking-widest uppercase whitespace-nowrap opacity-20"
          >
            {[...services, ...services].map((service, idx) => (
              <div key={idx} className="flex items-center gap-20">

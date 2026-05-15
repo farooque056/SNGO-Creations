@@ -25,7 +25,7 @@ export const Navbar = () => {
         scrolled ? "bg-black/90 backdrop-blur-xl border-b border-white/5" : "bg-transparent"
       }`} />
 
-      <div className="container mx-auto px-10 relative z-10 flex items-center justify-between">
+      <div className="container mx-auto px-5 md:px-10 relative z-10 flex items-center justify-between">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -34,7 +34,7 @@ export const Navbar = () => {
           <img 
             src="https://i.ibb.co/Xr4WFV7m/11-removebg-preview.png" 
             alt="SNGO Logo" 
-            className="h-14 md:h-20 w-auto object-contain transition-all duration-500 group-hover:brightness-125"
+            className="h-10 md:h-16 w-auto object-contain transition-all duration-500 group-hover:brightness-125"
           />
         </motion.div>
 
@@ -93,7 +93,7 @@ export const Navbar = () => {
           </button>
         </div>
 
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-6 md:gap-10">
           {["Home", "Services", "Work", "Studio", "Connect"].map((item, i) => (
             <motion.a
               key={item}
@@ -102,9 +102,9 @@ export const Navbar = () => {
               animate={menuOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ delay: 0.1 * i + 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => setMenuOpen(false)}
-              className="text-6xl md:text-8xl font-display font-black uppercase tracking-tightest hover:italic hover:text-white/40 transition-all flex items-center gap-8 group"
+              className="text-4xl sm:text-6xl md:text-8xl font-display font-black uppercase tracking-tightest hover:italic hover:text-white/40 transition-all flex items-center gap-6 md:gap-8 group"
             >
-              <span className="text-white/5 group-hover:text-white transition-colors">0{i + 1}</span>
+              <span className="text-xl sm:text-2xl md:text-3xl text-white/5 group-hover:text-white transition-colors">0{i + 1}</span>
               {item}
             </motion.a>
           ))}

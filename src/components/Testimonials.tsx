@@ -29,9 +29,9 @@ export const Testimonials = () => {
   return (
     <section className="py-32 px-6 overflow-hidden">
       <div className="container mx-auto">
-        <div className="max-w-4xl mx-auto relative">
-          <div className="absolute -top-12 -left-12 text-white/10">
-            <Quote size={120} />
+        <div className="max-w-4xl mx-auto relative px-4 md:px-0">
+          <div className="absolute -top-8 -left-8 md:-top-12 md:-left-12 text-white/10">
+            <Quote size={80} className="md:w-[120px] md:h-[120px]" />
           </div>
           
           <div className="relative z-10">

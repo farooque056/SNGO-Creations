@@ -50,44 +50,63 @@ export const LoadingScreen = ({ onComplete }: { onComplete: () => void }) => {
 
           <div className="relative z-10 flex flex-col items-center">
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              className="flex items-baseline gap-4 mb-2"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ 
+                scale: 1 + (progress / 1000), 
+                opacity: 1,
+                filter: `brightness(${0.5 + (progress / 100)}) contrast(${1 + (progress / 200)})`
+              }}
+              className="relative mb-12"
             >
-              <span className="text-8xl md:text-[14rem] font-display font-black tracking-tighter leading-[0.7]">
-                {Math.min(progress, 100)}
-              </span>
-              <span className="text-2xl font-serif italic text-white/40 font-light lowercase">percent</span>
-            </motion.div>
-            
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "200px" }}
-              className="h-[1px] bg-white/10 relative overflow-hidden"
-            >
+              <img 
+                src="https://i.ibb.co/Xr4WFV7m/11-removebg-preview.png" 
+                alt="SNGO Logo" 
+                className="h-24 md:h-32 w-auto object-contain"
+              />
+              {/* Pulsing Glow behind logo */}
               <motion.div 
-                className="absolute inset-y-0 left-0 bg-white"
-                style={{ width: `${progress}%` }}
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.1, 0.3, 0.1]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute inset-0 bg-white blur-3xl -z-10 rounded-full"
               />
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-8 overflow-hidden h-4"
-            >
-               <motion.div
-                 animate={{ y: [0, -20, -40, -60] }}
-                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                 className="text-[10px] uppercase tracking-[0.5em] text-white/40 text-center"
-               >
-                 <div>Initializing Core</div>
-                 <div>Synthesizing Visuals</div>
-                 <div>Rendering Excellence</div>
-                 <div>Finalizing Assets</div>
-               </motion.div>
-            </motion.div>
+            <div className="flex flex-col items-center gap-6">
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl md:text-6xl font-display font-black tracking-tight leading-none">
+                  {Math.min(progress, 100)}
+                </span>
+                <span className="text-[10px] uppercase font-mono tracking-widest text-white/20">/ 100</span>
+              </div>
+              
+              <div className="w-[120px] md:w-[160px] h-[1px] bg-white/5 relative overflow-hidden">
+                <motion.div 
+                  className="absolute inset-y-0 left-0 bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="overflow-hidden h-4"
+              >
+                 <motion.div
+                   animate={{ y: [0, -20, -40, -60] }}
+                   transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                   className="text-[8px] uppercase tracking-[0.5em] text-white/20 text-center font-mono"
+                 >
+                   <div>SYS_INIT</div>
+                   <div>CORE_PROC</div>
+                   <div>VFX_RENDER</div>
+                   <div>SYNC_COMPLETE</div>
+                 </motion.div>
+              </motion.div>
+            </div>
           </div>
         </motion.div>
       )}
